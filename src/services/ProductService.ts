@@ -1,12 +1,12 @@
 import axios from "axios";
+import { IProductResponse } from "../types/productInterface";
+
+axios.defaults.baseURL = "http://localhost:7000";
 
 export const ProductService = {
   async getProducts() {
-    const res = await axios({
-      method: "GET",
-      url: "http://localhost:7000/clothing",
-    });
-    return res.data.rows;
+    const { data } = await axios.get<IProductResponse>("/clothing");
+    return data.rows;
   },
 
   async getProductById(id: number) {
