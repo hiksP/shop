@@ -1,39 +1,33 @@
-import React, { useEffect, useState } from "react";
 import { FC } from "react";
 import { ProductService } from "../../services/ProductService";
-import { IProduct } from "../../types/productInterface";
 import styles from "./Home.module.scss";
+import { useQuery } from "@tanstack/react-query";
+import ClothingItem from "./ui/clothing-item/clothingItem";
+import Layout from "./ui/layout/layout";
+import Loader from "./ui/loader/Loader";
 
 const Home: FC = () => {
-  const [clothing, setClothing] = useState<IProduct[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        setIsLoading(true);
-        const products = await ProductService.getProducts();
-        setClothing(products);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetch();
-  }, []);
+  const {
+    data: clothing,
+    error,
+    isLoading,
+  } = useQuery(["clothing"], () => ProductService.getProducts());
 
   return (
-    <div className={styles.bg}>
-      {isLoading ? (
-        <div className="text-blue-400 text-2xl">Loading..</div>
-      ) : clothing.length ? (
-        clothing.map((clothing) => <div key={clothing.id}>{clothing.name}</div>)
-      ) : (
-        <div>No products</div>
-      )}
-    </div>
+    <Layout>
+      <Loader></Loader>
+      {/* <div className={styles.bg}>
+        {isLoading ? (
+          <Loader></Loader>
+        ) : clothing?.length ? (
+          clothing.map((clothing) => (
+            <ClothingItem clothing={clothing} key={clothing.id} />
+          ))
+        ) : (
+          <div>No products</div>
+        )}
+      </div> */}
+    </Layout>
   );
 };
 

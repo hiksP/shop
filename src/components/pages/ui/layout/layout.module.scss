@@ -1,0 +1,7 @@
+.layout {
+  @apply grid-flow-row gap-4 p-4 bg-slate-400;
+}
+
+.title {
+  @apply text-xl font-extrabold text-left;
+}
