@@ -1,21 +1,23 @@
-.item {
+.container {
+  @apply flex flex-col justify-center w-full m-3;
 }
 
-// стили для страницы товара
-// .item {
-//     image {
-//         @apply border-gray-300 mb-3
-//     }
+.image {
+  @apply border-gray-700 border-2 mb-3 max-w-xs max-h-32 w-full h-full object-contain;
+}
 
-//     title {
-//         @apply text-center text-lg font-semibold p-0 mb-2
-//     }
+.title {
+  @apply text-center text-lg font-semibold p-0 mb-2;
+}
 
-//     description {
-//         @apply text-left text-sm font-normal p-0 mb-3
-//     }
+.info {
+  @apply flex flex-col justify-center items-start;
+}
 
-//     price {
-//         @apply text-left font-bold p-3 border-b-gray-300 w-10/12
-//     }
-// }
+.description {
+  @apply text-left text-sm font-normal p-0 mb-3;
+}
+
+.price {
+  @apply p-0 text-left font-bold border-b-gray-300 w-10/12;
+}

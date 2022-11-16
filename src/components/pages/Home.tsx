@@ -4,7 +4,7 @@ import styles from "./Home.module.scss";
 import { useQuery } from "@tanstack/react-query";
 import ClothingItem from "./ui/clothing-item/clothingItem";
 import Layout from "./ui/layout/layout";
-import Loader from "./ui/loader/Loader";
+import Loader from "./ui/loader/loader";
 
 const Home: FC = () => {
   const {
@@ -14,9 +14,8 @@ const Home: FC = () => {
   } = useQuery(["clothing"], () => ProductService.getProducts());
 
   return (
-    <Layout>
-      <Loader></Loader>
-      {/* <div className={styles.bg}>
+    <Layout title={"Shop the collection"}>
+      <div className={styles.bg}>
         {isLoading ? (
           <Loader></Loader>
         ) : clothing?.length ? (
@@ -26,7 +25,7 @@ const Home: FC = () => {
         ) : (
           <div>No products</div>
         )}
-      </div> */}
+      </div>
     </Layout>
   );
 };
