@@ -2,9 +2,9 @@ import { FC } from "react";
 import { ProductService } from "../../services/ProductService";
 import styles from "./Home.module.scss";
 import { useQuery } from "@tanstack/react-query";
-import ClothingItem from "./ui/clothing-item/clothingItem";
-import Layout from "./ui/layout/layout";
-import Loader from "./ui/loader/loader";
+import ClothingItem from "./ui/clothing-item/ClothingItem";
+import Layout from "./ui/layout/Layout";
+import Loader from "./ui/loader/Loader";
 
 const Home: FC = () => {
   const {

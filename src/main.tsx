@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Home from "./components/pages/home";
+import Home from "./components/pages/Home";
 import "./index.css";
 import {
   QueryClient,
@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Routes>
         <Route path="/" element={<Home></Home>} />
         {/* <Route path="/cart" element={<Cart></Cart>} />
-        <Route path="product" element={<Product></Product>} />
+        <Route path="product/:id" element={<Product></Product>} />
         <Route path="*" element={<NotFoundPage></NotFoundPage>} /> */}
       </Routes>
     </BrowserRouter>
