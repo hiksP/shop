@@ -3,7 +3,7 @@ import Navigation from "../Navigation/Navigation";
 
 import styles from "./Layout.module.scss";
 
-const Layout: FC<PropsWithChildren<{ title: string }>> = ({
+const Layout: FC<PropsWithChildren<{ title?: string }>> = ({
   children,
   title,
 }) => {
