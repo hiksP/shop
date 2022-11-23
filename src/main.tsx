@@ -29,7 +29,12 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Route path="/" element={<Home></Home>} />
         <Route path="/cart" element={<Cart></Cart>} />
         <Route path="product/:id" element={<Product></Product>} />
-        <Route path="*" element={<NotFoundPage></NotFoundPage>} />
+        <Route
+          path="*"
+          element={
+            <NotFoundPage title="Страницы не существует!"></NotFoundPage>
+          }
+        />
       </Routes>
     </BrowserRouter>
   </QueryClientProvider>

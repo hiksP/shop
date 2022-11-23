@@ -1,0 +1,13 @@
+.gallery {
+  .main {
+  }
+
+  .image {
+    @apply border-solid mb-4 w-full h-44 bg-cover bg-center bg-no-repeat;
+  }
+
+  .item {
+    &.active {
+    }
+  }
+}
