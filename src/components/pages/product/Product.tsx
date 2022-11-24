@@ -7,6 +7,7 @@ import Loader from "../ui/loader/Loader";
 import Button from "../ui/Button/Button";
 import NotFoundPage from "../notFoundPage/NotFoundPage";
 import Gallery from "./gallery/Gallery";
+import styles from "./Product.module.scss";
 
 const Product: FC = () => {
   const params = useParams();
@@ -28,8 +29,15 @@ const Product: FC = () => {
   return (
     <Layout>
       {isLoading && <Loader></Loader>}
-      {clothing?.name}
       <Gallery images={images}></Gallery>
+      <h1 className={styles.name}>{clothing.name}</h1>
+      <p className={styles.price}>
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0,
+        }).format(clothing.price)}
+      </p>
       <Button>Add to cart</Button>
     </Layout>
   );

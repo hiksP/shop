@@ -1,0 +1,19 @@
+.menu {
+  @apply h-[5vh] flex justify-center p-3 w-full;
+}
+
+.nav {
+  @apply w-[65%];
+}
+
+.list {
+  @apply list-none w-full flex justify-between;
+}
+
+.link {
+  @apply my-0 text-center font-semibold text-[#89aa1e] transition-opacity;
+
+  &:hover {
+    @apply cursor-pointer opacity-30;
+  }
+}

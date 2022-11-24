@@ -1,0 +1,15 @@
+.notFound {
+  @apply bg-[#e4e3e2] h-screen flex flex-col justify-center items-center;
+}
+
+.title {
+  @apply text-black text-3xl font-semibold my-0 mx-auto;
+}
+
+.home {
+  @apply my-2 mx-auto p-0 transition-opacity;
+
+  &:hover {
+    @apply opacity-40;
+  }
+}

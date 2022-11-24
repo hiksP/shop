@@ -14,7 +14,7 @@
   @apply border border-solid h-20;
 
   > div {
-    @apply h-full bg-contain;
+    @apply h-full;
   }
 
   &.active {
