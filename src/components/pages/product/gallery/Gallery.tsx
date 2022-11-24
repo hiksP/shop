@@ -11,25 +11,24 @@ const Gallery: FC<{ images: string[] }> = ({ images }) => {
           backgroundImage: `url(${images[currentIndex]})`,
         }}
         className={cn(styles.image, styles.main)}
-      >
-        <div className={styles.list}>
-          {images.map((image, index) => (
-            <button
-              key={index}
-              className={cn(styles.item, {
-                [styles.active]: currentIndex === index,
-              })}
-              onClick={() => setCurrentIndex(index)}
-            >
-              <div
-                style={{
-                  backgroundImage: image,
-                }}
-                className={styles.image}
-              ></div>
-            </button>
-          ))}
-        </div>
+      ></div>
+      <div className={styles.list}>
+        {images.map((image, index) => (
+          <button
+            key={index}
+            className={cn(styles.item, {
+              [styles.active]: currentIndex === index,
+            })}
+            onClick={() => setCurrentIndex(index)}
+          >
+            <div
+              style={{
+                backgroundImage: `url(${images[index]})`,
+              }}
+              className={styles.image}
+            ></div>
+          </button>
+        ))}
       </div>
     </div>
   );
