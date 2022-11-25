@@ -3,6 +3,7 @@ import { IProduct } from "../../../../types/productInterface";
 import styles from "./clothingItem.module.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Price from "../price/Price";
 
 const ClothingItem: FC<{ clothing: IProduct }> = ({ clothing }) => {
   return (
@@ -16,13 +17,7 @@ const ClothingItem: FC<{ clothing: IProduct }> = ({ clothing }) => {
       <div className={styles.info}>
         <h2 className={styles.title}>{clothing.name}</h2>
         <p className={styles.description}></p>
-        <p className={styles.price}>
-          {new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-            maximumFractionDigits: 0,
-          }).format(clothing.price)}
-        </p>
+        <Price price={clothing.price}></Price>
       </div>
     </div>
   );

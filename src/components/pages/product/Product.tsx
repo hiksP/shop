@@ -8,13 +8,24 @@ import Button from "../ui/Button/Button";
 import NotFoundPage from "../notFoundPage/NotFoundPage";
 import Gallery from "./gallery/Gallery";
 import styles from "./Product.module.scss";
+import { useTypedSelector } from "../../../hooks/useTypedSelector";
+import { useActions } from "../../../hooks/useActions";
+import Price from "../ui/price/Price";
 
 const Product: FC = () => {
   const params = useParams();
 
-  const { data: clothing, isLoading } = useQuery(["clothing", params.id], () =>
-    ProductService.getProductById(params.id || "")
+  const id = params.id;
+
+  const { data: clothing, isLoading } = useQuery(["clothing", id], () =>
+    ProductService.getProductById(id || "")
   );
+
+  const { items } = useTypedSelector((state) => state.cart);
+
+  const { removeFromCart, addToCart } = useActions();
+
+  const isProductInCart = items.some((item) => item.id === Number(id));
 
   if (!clothing) {
     return <NotFoundPage title="Нет такого товара!"></NotFoundPage>;
@@ -31,14 +42,14 @@ const Product: FC = () => {
       {isLoading && <Loader></Loader>}
       <Gallery images={images}></Gallery>
       <h1 className={styles.name}>{clothing.name}</h1>
-      <p className={styles.price}>
-        {new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-          maximumFractionDigits: 0,
-        }).format(clothing.price)}
-      </p>
-      <Button>Add to cart</Button>
+      <Price price={clothing.price}></Price>
+      <Button
+        onClick={() =>
+          isProductInCart ? removeFromCart(Number(id)) : addToCart(clothing)
+        }
+      >
+        {isProductInCart ? "This product already in the cart" : "Add to cart"}
+      </Button>
     </Layout>
   );
 };
