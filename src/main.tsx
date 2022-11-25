@@ -19,23 +19,30 @@ import {
   Routes,
   BrowserRouter,
 } from "react-router-dom";
+import { persistor, store } from "./store/store";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home></Home>} />
-        <Route path="/cart" element={<Cart></Cart>} />
-        <Route path="product/:id" element={<Product></Product>} />
-        <Route
-          path="*"
-          element={
-            <NotFoundPage title="Страницы не существует!"></NotFoundPage>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <PersistGate persistor={persistor} loading={null}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home></Home>} />
+            <Route path="/cart" element={<Cart></Cart>} />
+            <Route path="product/:id" element={<Product></Product>} />
+            <Route
+              path="*"
+              element={
+                <NotFoundPage title="Страницы не существует!"></NotFoundPage>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   </QueryClientProvider>
 );
