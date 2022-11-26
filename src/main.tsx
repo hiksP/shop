@@ -22,6 +22,7 @@ import {
 import { persistor, store } from "./store/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import Auth from "./components/pages/auth/Auth";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home></Home>} />
+            <Route path="/signup" element={<Auth></Auth>} />
+            <Route path="/signin" element={<Auth></Auth>} />
             <Route path="/cart" element={<Cart></Cart>} />
             <Route path="product/:id" element={<Product></Product>} />
             <Route

@@ -1,0 +1,45 @@
+.auth {
+  @apply flex flex-col justify-center items-center min-h-full bg-white p-4;
+}
+
+.title {
+  @apply text-black text-center font-bold text-2xl p-0 mt-[250px] mb-3;
+}
+
+.subtitle {
+  @apply text-[#a4a1a6] text-center p-0 m-0 font-medium text-base;
+}
+
+.form {
+  @apply flex flex-col my-5 w-[600px];
+}
+
+.container {
+  @apply flex flex-col justify-center border-[1px] border-gray-300 rounded-md w-full mb-8;
+}
+
+.text {
+  @apply text-gray-300 opacity-90 m-0 ml-4 mb-1 p-0;
+}
+
+.input {
+  @apply outline-none m-0 ml-4 mb-2 p-0 text-base font-normal text-black;
+}
+
+.button {
+  @apply bg-[#9847ff] text-white text-sm font-medium self-center items-center rounded-xl w-2/3 h-[60px] transition-opacity;
+  &:hover {
+    @apply cursor-pointer opacity-70;
+  }
+}
+
+.linkText {
+  @apply text-base m-0 p-0;
+}
+
+.link {
+  @apply text-base m-0 ml-1 p-0 transition-opacity;
+  &:hover {
+    @apply cursor-pointer opacity-50;
+  }
+}
