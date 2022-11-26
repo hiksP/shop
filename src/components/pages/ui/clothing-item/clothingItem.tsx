@@ -16,7 +16,6 @@ const ClothingItem: FC<{ clothing: IProduct }> = ({ clothing }) => {
       </Link>
       <div className={styles.info}>
         <h2 className={styles.title}>{clothing.name}</h2>
-        <p className={styles.description}></p>
         <Price price={clothing.price}></Price>
       </div>
     </div>

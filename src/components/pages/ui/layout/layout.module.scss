@@ -1,7 +1,7 @@
 .layout {
-  @apply bg-[#e4e3e2] min-h-screen flex flex-col justify-between items-center p-4 my-0 mx-auto;
+  @apply bg-[#e4e3e2] min-h-screen flex flex-col items-center p-4 my-0 mx-auto;
 }
 
 .title {
-  @apply text-xl font-extrabold text-left p-0 mb-7;
+  @apply text-xl font-extrabold text-left p-0 my-11;
 }
