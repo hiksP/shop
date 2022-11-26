@@ -38,7 +38,7 @@
 }
 
 .link {
-  @apply text-base m-0 ml-1 p-0 transition-opacity;
+  @apply text-base m-0 text-[#c1a5ed] ml-1 p-0 transition-opacity;
   &:hover {
     @apply cursor-pointer opacity-50;
   }

@@ -10,6 +10,12 @@ const Navigation: FC = () => {
           <Link to="/" className={styles.link}>
             Home
           </Link>
+          <Link to="/signup" className={styles.link}>
+            Registration
+          </Link>
+          <Link to="/signin" className={styles.link}>
+            Login
+          </Link>
           <Link to="/cart" className={styles.link}>
             Cart
           </Link>
