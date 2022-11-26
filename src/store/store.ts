@@ -1,8 +1,4 @@
-import {
-  combineReducers,
-  configureStore,
-  getDefaultMiddleware,
-} from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
   PersistConfig,
   FLUSH,
@@ -20,7 +16,7 @@ import storage from "redux-persist/lib/storage";
 const persistConfig: PersistConfig<any> = {
   key: "root",
   storage,
-  whitelist: ["auth"],
+  whitelist: ["cart"],
 };
 
 const rootReducer = combineReducers({
