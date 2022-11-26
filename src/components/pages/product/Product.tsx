@@ -48,7 +48,9 @@ const Product: FC = () => {
           isProductInCart ? removeFromCart(Number(id)) : addToCart(clothing)
         }
       >
-        {isProductInCart ? "This product already in the cart" : "Add to cart"}
+        {isProductInCart
+          ? "This product is already in the cart"
+          : "Add to cart"}
       </Button>
     </Layout>
   );

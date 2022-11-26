@@ -1,0 +1,18 @@
+.container {
+  @apply flex w-[400px] border-2 border-gray-300 border-solid mb-2 py-2.5 px-4 justify-between items-center;
+}
+
+.info {
+  @apply flex;
+}
+
+.name {
+  @apply p-0 mr-2 text-lg font-semibold;
+}
+
+.remove {
+  @apply text-red-500 transition-opacity;
+  &:hover {
+    @apply cursor-pointer opacity-40;
+  }
+}

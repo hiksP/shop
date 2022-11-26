@@ -1,6 +1,8 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import { useActions } from "../../../hooks/useActions";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
+import NotFoundPage from "../notFoundPage/NotFoundPage";
 import Button from "../ui/Button/Button";
 import CartElement from "../ui/cartElement/CartElement";
 import Layout from "../ui/layout/Layout";
@@ -12,7 +14,7 @@ const Cart: FC = () => {
   const { removeFromCart } = useActions();
 
   return (
-    <Layout title="Cart">
+    <Layout>
       <ul className={styles.cart}>
         {items.length ? (
           items.map((product) => {
@@ -25,7 +27,10 @@ const Cart: FC = () => {
             );
           })
         ) : (
-          <p>Корзина пуста!</p>
+          <NotFoundPage
+            title="Корзина пуста"
+            subtitle="Может быть добавим что-то в корзину?"
+          ></NotFoundPage>
         )}
       </ul>
       <Button>Checkout</Button>
