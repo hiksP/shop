@@ -7,10 +7,13 @@ const Auth: FC = () => {
   const isSignIn = location.pathname === "/signin";
   const email = useInput("", { isEmpty: true, minLength: 3 });
   const password = useInput("", { isEmpty: true, minLength: 10 });
+  const notValidButton = !email.inputValid || !password.inputValid;
 
   return (
     <section className={styles.auth}>
-      <h2 className={styles.title}>Welcome back</h2>
+      <h2 className={styles.title}>
+        {isSignIn ? "Welcome back" : "Get started"}
+      </h2>
       <p className={styles.subtitle}>Enter your details here</p>
       <form className={styles.form}>
         <div className={styles.container}>
@@ -35,14 +38,19 @@ const Auth: FC = () => {
             placeholder="Enter your password"
           ></input>
         </div>
-        <button className={styles.button}>Sign in</button>
+        <button disabled={notValidButton} className={styles.button}>
+          {isSignIn ? "Sign in" : "Sign up"}
+        </button>
       </form>
       <p className={styles.linkText}>
-        Don't have an Account?
-        <Link to={"/signup"} className={styles.link}>
-          Get started
+        {isSignIn ? "Dont have an Account?" : "Already have an Account?"}
+        <Link to={isSignIn ? "/signup" : "/signin"} className={styles.link}>
+          {isSignIn ? "Get started" : "Sign in!"}
         </Link>
       </p>
+      {email.isDirty && email.minLengthError && (
+        <span className={styles.error}>Error</span>
+      )}
     </section>
   );
 };

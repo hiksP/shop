@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const useValidation = (value: string, validations: any) => {
   const [isEmpty, setEmpty] = useState(true);
   const [minLengthError, setMinLengthError] = useState(false);
+  const [inputValid, setInputValid] = useState(false);
 
   useEffect(() => {
     for (const validation in validations) {
@@ -19,9 +20,18 @@ const useValidation = (value: string, validations: any) => {
     }
   }, [value]);
 
+  useEffect(() => {
+    if (isEmpty || minLengthError) {
+      setInputValid(false);
+    } else {
+      setInputValid(true);
+    }
+  }, [isEmpty, minLengthError]);
+
   return {
     isEmpty,
     minLengthError,
+    inputValid,
   };
 };
 

@@ -26,10 +26,18 @@
   @apply outline-none m-0 ml-4 mb-2 p-0 text-base font-normal text-black;
 }
 
+.error {
+  @apply mt-2 p-0 text-sm text-red-500 font-medium;
+}
+
 .button {
   @apply bg-[#9847ff] text-white text-sm font-medium self-center items-center rounded-xl w-2/3 h-[60px] transition-opacity;
-  &:hover {
+  &:hover:enabled {
     @apply cursor-pointer opacity-70;
+  }
+
+  &:disabled {
+    @apply bg-gray-500;
   }
 }
 
