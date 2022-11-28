@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
+import { AuthService } from "../../../services/AuthService";
 import styles from "./Auth.module.scss";
 
 const Auth: FC = () => {
@@ -8,6 +9,7 @@ const Auth: FC = () => {
   const email = useInput("", { isEmpty: true, minLength: 6, isEmail: false });
   const password = useInput("", { isEmpty: true, minLength: 8 });
   const notValidButton = !email.inputValid || !password.inputValid;
+  const navigate = useNavigate();
 
   const [EmailErrorText, setEmailErrorText] = useState("");
   const [passwordErrorText, setPasswordErrorText] = useState("");
@@ -42,13 +44,37 @@ const Auth: FC = () => {
     }
   }, [email, password]);
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (isSignIn) {
+      try {
+        AuthService.signIn(email.value, password.value);
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        AuthService.signUp(email.value, password.value);
+        navigate("/signin");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <section className={styles.auth}>
       <h2 className={styles.title}>
         {isSignIn ? "Welcome back" : "Get started"}
       </h2>
       <p className={styles.subtitle}>Enter your details here</p>
-      <form className={styles.form}>
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+        className={styles.form}
+      >
         <div className={styles.container}>
           <p className={styles.text}>Email</p>
           <input
