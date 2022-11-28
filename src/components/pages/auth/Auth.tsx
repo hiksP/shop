@@ -1,13 +1,46 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import styles from "./Auth.module.scss";
 
 const Auth: FC = () => {
   const isSignIn = location.pathname === "/signin";
-  const email = useInput("", { isEmpty: true, minLength: 3 });
-  const password = useInput("", { isEmpty: true, minLength: 10 });
+  const email = useInput("", { isEmpty: true, minLength: 6, isEmail: false });
+  const password = useInput("", { isEmpty: true, minLength: 8 });
   const notValidButton = !email.inputValid || !password.inputValid;
+
+  const [EmailErrorText, setEmailErrorText] = useState("");
+  const [passwordErrorText, setPasswordErrorText] = useState("");
+
+  useEffect(() => {
+    if (email.emailError) {
+      setEmailErrorText("Email is not correct");
+    }
+    if (email.isEmpty) {
+      setEmailErrorText("Email should not be empty");
+    }
+    if (email.minLengthError) {
+      setEmailErrorText("Minimal length of email is 6");
+    }
+  }, [email.value]);
+
+  useEffect(() => {
+    if (password.isEmpty) {
+      setPasswordErrorText("Password should not be empty");
+    }
+    if (password.minLengthError) {
+      setPasswordErrorText("Minimal length of password is 8");
+    }
+  }, [password.value]);
+
+  useEffect(() => {
+    if (email.inputValid) {
+      setEmailErrorText("");
+    }
+    if (password.inputValid) {
+      setPasswordErrorText("");
+    }
+  }, [email, password]);
 
   return (
     <section className={styles.auth}>
@@ -48,8 +81,11 @@ const Auth: FC = () => {
           {isSignIn ? "Get started" : "Sign in!"}
         </Link>
       </p>
-      {email.isDirty && email.minLengthError && (
-        <span className={styles.error}>Error</span>
+      {email.isDirty && EmailErrorText && (
+        <span className={styles.error}>{EmailErrorText}</span>
+      )}
+      {password.isDirty && passwordErrorText && (
+        <span className={styles.error}>{passwordErrorText}</span>
       )}
     </section>
   );
